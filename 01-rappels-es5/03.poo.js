@@ -57,6 +57,8 @@ var robert = {
 afficherPersonne(robert);
 
 function Client(nom, prenom, pseudo, numeroClient) {
+    //this.base = Personne;
+    //this.base(nom, prenom, pseudo);
     Personne.call(this, nom, prenom, pseudo);
     this.numeroClient = numeroClient;
     this.getInfos = function(){
