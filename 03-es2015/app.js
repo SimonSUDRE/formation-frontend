@@ -83,39 +83,36 @@ class TripService {
     }
 
     findByName(tripName) {
-        setTimeout(this.findByName, 2000);
-        let trip;
-        this.trips.forEach(element => {
-            if(element.name == tripName) {
-                trip = element;
-            }
-        });
         return new Promise((resolve, reject) => {
-            if(trip){
-                resolve(trip);
-            }
-            else {
+            return setTimeout(() => {
+                this.trips.forEach(trip => {
+                    if(trip.name == tripName) {
+                        resolve(trip);
+                    }
+                });
                 reject("No trip with name " + tripName);
-            }
+            }, 2000);
         });
     }
 }
 
 class PriceService {
     constructor() {
-        this.trips = new Map().set('paris', 100).set('rio-de-janeiro',800);
+        this.trips = {'paris' : 100, 'rio-de-janeiro' : 800};
     }
     
     findPriceByTripId(tripId) {
-        setTimeout(this.findPriceByTripId, 2000);
-        let price = this.trips.get(tripId);
+        this.findPriceByTripId
         return new Promise((resolve, reject) => {
-            if(price) {
-                resolve(price);
-            }
-            else {
-                reject("No price found for id " + tripId);
-            }
+            return setTimeout(() => {
+                let price = this.trips[tripId];
+                if(price) {
+                    resolve(price);
+                }
+                else {
+                    reject("No price found for id " + tripId);
+                }
+            }, 2000);
         });
     }
 }
