@@ -119,14 +119,20 @@ class PriceService {
 let tripService = new TripService();
 let priceService = new PriceService();
 tripService.findByName("Paris")
-.then(trip => console.log("Trip found : " + trip), error => console.log(error));
+.then(
+    trip => console.log("Trip found : " + trip), 
+    error => console.log(error)
+);
 tripService.findByName("Toulouse")
-.then(trip => console.log(trip), error => console.log(error));
+.then(
+    trip => console.log(trip), 
+    error => console.log(error)
+);
 tripService.findByName('Rio de Janeiro')
 .then(trip => priceService.findPriceByTripId(trip.id))
-.then(price => console.log(price))
+.then(price => console.log("Price found :", price))
 .catch(error =>  console.log(error));
 tripService.findByName('Nantes')
 .then(trip => priceService.findPriceByTripId(trip.id))
-.then(price => console.log(price))
+.then(price => console.log("Price found :", price))
 .catch(error => console.log(error));
