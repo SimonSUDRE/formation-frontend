@@ -86,9 +86,7 @@ class TripService {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 this.trips.forEach(trip => {
-                    if(trip.name == tripName) {
-                        resolve(trip);
-                    }
+                    trip.name == tripName ?  resolve(trip) : null;
                 });
                 reject("No trip with name " + tripName);
             }, 2000);
@@ -98,20 +96,17 @@ class TripService {
 
 class PriceService {
     constructor() {
-        this.trips = {'paris' : 100, 'rio-de-janeiro' : 800};
+        this.prices = new Map();
+        this.prices.set("paris", 100);
+        this.prices.set("rio-de-janeiro", 800);
     }
     
     findPriceByTripId(tripId) {
         this.findPriceByTripId
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                let price = this.trips[tripId];
-                if(price) {
-                    resolve(price);
-                }
-                else {
-                    reject("No price found for id " + tripId);
-                }
+                let price = this.prices.get(tripId);
+                price ?  resolve(price) : reject("No price found for id " + tripId);
             }, 2000);
         });
     }
