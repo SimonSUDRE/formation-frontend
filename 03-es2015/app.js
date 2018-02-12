@@ -83,14 +83,14 @@ class TripService {
     }
 
     findByName(tripName) {
-        //setTimeout(2000);
+        setTimeout(this.findByName, 2000);
         let trip;
         this.trips.forEach(element => {
             if(element.name == tripName) {
                 trip = element;
             }
         });
-        return new Promise(function(resolve, reject){
+        return new Promise((resolve, reject) => {
             if(trip){
                 resolve(trip);
             }
@@ -105,11 +105,11 @@ class PriceService {
     constructor() {
         this.trips = new Map().set('paris', 100).set('rio-de-janeiro',800);
     }
-
+    
     findPriceByTripId(tripId) {
-        //setTimeout(2000);
+        setTimeout(this.findPriceByTripId, 2000);
         let price = this.trips.get(tripId);
-        return new Promise(function(resolve, reject){
+        return new Promise((resolve, reject) => {
             if(price) {
                 resolve(price);
             }
@@ -122,34 +122,14 @@ class PriceService {
 let tripService = new TripService();
 let priceService = new PriceService();
 tripService.findByName("Paris")
-.then(function(trip){
-    console.log("Trip found : " + trip);
-}, function(error) {
-    console.log(error);
-});
+.then(trip => console.log("Trip found : " + trip), error => console.log(error));
 tripService.findByName("Toulouse")
-.then(function(trip){
-    console.log(trip);
-}, function(error) {
-    console.log(error);
-});
+.then(trip => console.log(trip), error => console.log(error));
 tripService.findByName('Rio de Janeiro')
-.then(function(trip){
-    return priceService.findPriceByTripId(trip.id);
-})
-.then(function(price){
-    console.log(price);
-})
-.catch(function(error){
-    console.log(error);
-});
+.then(trip => priceService.findPriceByTripId(trip.id))
+.then(price => console.log(price))
+.catch(error =>  console.log(error));
 tripService.findByName('Nantes')
-.then(function(trip){
-    return priceService.findPriceByTripId(trip.id);
-})
-.then(function(price){
-    console.log(price);
-})
-.catch(function(error){
-    console.log(error);
-});
+.then(trip => priceService.findPriceByTripId(trip.id))
+.then(price => console.log(price))
+.catch(error => console.log(error));
