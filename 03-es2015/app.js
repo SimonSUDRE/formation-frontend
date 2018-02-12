@@ -84,7 +84,7 @@ class TripService {
 
     findByName(tripName) {
         return new Promise((resolve, reject) => {
-            return setTimeout(() => {
+            setTimeout(() => {
                 this.trips.forEach(trip => {
                     if(trip.name == tripName) {
                         resolve(trip);
@@ -104,7 +104,7 @@ class PriceService {
     findPriceByTripId(tripId) {
         this.findPriceByTripId
         return new Promise((resolve, reject) => {
-            return setTimeout(() => {
+            setTimeout(() => {
                 let price = this.trips[tripId];
                 if(price) {
                     resolve(price);
